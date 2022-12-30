@@ -27,13 +27,13 @@ public class MovieController {
     }
 
     @PutMapping("/add-movie-director-pair")
-    public ResponseEntity<String> addMovieDirectorpair(@RequestParam("movie") String movieName,@RequestParam("director") String directorName ){
+    public ResponseEntity<String> addMovieDirectorPair(@RequestParam("movie") String movieName,@RequestParam("director") String directorName ){
         movieService.createMovieDirectorPair(movieName,directorName);
         return new ResponseEntity<>("New movie-director pair added successfully!",HttpStatus.CREATED);
     }
 
     @GetMapping("/get-movie-by-name/{name}")
-    public ResponseEntity<Movie> getMovieByname(@PathVariable String name){
+    public ResponseEntity<Movie> getMovieByName(@PathVariable String name){
         Movie movie = movieService.findMovie(name);
         return new ResponseEntity<>(movie,HttpStatus.CREATED);
     }
@@ -45,7 +45,7 @@ public class MovieController {
     }
 
     @GetMapping("/get-movies-by-director-name/{director}")
-    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable String directorName){
+    public ResponseEntity<List<String>> getMovieByDirectorName(@PathVariable String directorName){
         List<String> movieList = movieService.findMoviesFromDirector(directorName);
         return new ResponseEntity<>(movieList,HttpStatus.CREATED);
     }
