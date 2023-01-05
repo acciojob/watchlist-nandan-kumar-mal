@@ -14,11 +14,14 @@ public class MovieRepository {
     private HashMap<String,Director> directorHashMap;
     private HashMap<String, List<String>> directorMoviePair;
 
+    private HashMap<String,String> movieDirectorMap;
+
 
     public MovieRepository(){
         this.movieHashMap=new HashMap<>();
         this.directorHashMap= new HashMap<>();
         this.directorMoviePair=new HashMap<>();
+        this.movieDirectorMap=new HashMap<>();
     }
     public void addMovieToMap(Movie mv){
         movieHashMap.put(mv.getName(),mv);
@@ -38,9 +41,18 @@ public class MovieRepository {
                 allMoviesByDirector = directorMoviePair.get(directorName);
             }
                 allMoviesByDirector.add(movieName);
+                movieDirectorMap.put(movieName,directorName);
 
                 directorMoviePair.put(directorName,allMoviesByDirector);
         }
+    }
+
+
+    public String searchDirectorFromMovieName(String movieName){
+        String directorName="";
+        if(movieDirectorMap.containsKey(movieName))
+            directorName = movieDirectorMap.get(movieName);
+        return directorName;
     }
 
     public Movie searchMovie(String movieName){
